@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
-public class SistemaDeNotas {
+public class Main { // AQUI: o nome da classe foi alterado para Main
 
     public static void main(String[] args) {
 
         // --- 1. Definir as constantes e estruturas de dados ---
         final int NUM_ANALISTAS = 5;
-        final int int NUM_AVALIACOES = 3; 
+        final int NUM_AVALIACOES = 3; 
 
         String[] nomes = new String[NUM_ANALISTAS];
         double[][] notas = new double[NUM_ANALISTAS][NUM_AVALIACOES];
