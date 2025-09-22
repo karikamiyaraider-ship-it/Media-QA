@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class SistemaDeNotas {
+
+    public static void main(String[] args) {
+
+        // --- 1. Definir as constantes e estruturas de dados ---
+        final int NUM_ANALISTAS = 5;
+        final int int NUM_AVALIACOES = 3; 
+
+        String[] nomes = new String[NUM_ANALISTAS];
+        double[][] notas = new double[NUM_ANALISTAS][NUM_AVALIACOES];
+
+        Scanner scanner = new Scanner(System.in);
+
+        // --- 2. Coleta de dados (nomes e notas) ---
+        System.out.println("--- Sistema de Notas dos Analistas ---");
+
+        for (int i = 0; i < NUM_ANALISTAS; i++) {
+            System.out.println("\n--- Cadastro do Analista " + (i + 1) + " ---");
+            
+            System.out.print("Digite o nome: ");
+            nomes[i] = scanner.nextLine();
+
+            for (int j = 0; j < NUM_AVALIACOES; j++) {
+                try {
+                    System.out.print("Digite a nota " + (j + 1) + " (80 a 100%): ");
+                    notas[i][j] = scanner.nextDouble();
+                } catch (java.util.InputMismatchException e) {
+                    System.out.println("Entrada inválida. Por favor, digite um número.");
+                    scanner.next(); 
+                    j--; 
+                }
+            }
+            scanner.nextLine();
+        }
+
+        // --- 3. Processamento e exibição dos resultados ---
+        System.out.println("\n--- Relatório Final de Desempenho ---");
+
+        for (int i = 0; i < NUM_ANALISTAS; i++) {
+            double somaNotas = 0;
+            for (int j = 0; j < NUM_AVALIACOES; j++) {
+                somaNotas += notas[i][j];
+            }
+
+            double media = somaNotas / NUM_AVALIACOES;
+            
+            System.out.printf("A média do analista %s é: %.2f%%\n", nomes[i], media);
+
+            if (media >= 85) {
+                System.out.println("Status: Acima da Média");
+            } else {
+                System.out.println("Status: Abaixo da Média");
+            }
+        }
+
+        scanner.close();
+    }
+}
